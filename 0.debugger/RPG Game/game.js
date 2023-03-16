@@ -145,6 +145,7 @@ class Player {
 	};
 
 	takeAttack( damage ) {
+		debugger;
 		if(this.isAttackBlocked()) {
 			console.log(`'${this.name}' заблокировал удар`);
 			this.weapon.takeDamage(damage);
