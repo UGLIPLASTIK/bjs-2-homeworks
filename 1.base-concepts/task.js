@@ -13,12 +13,11 @@ function solveEquation(a, b, c) {
     arr.push(root);
   }
 
-  console.log(d);
-  console.log(arr);
   return arr;
 }
 
-solveEquation(2, 9, 1)
+let solution = solveEquation(2, 9, 1);
+console.log(solution);
 // solveEquation(16, 8, 1) равен 0
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
