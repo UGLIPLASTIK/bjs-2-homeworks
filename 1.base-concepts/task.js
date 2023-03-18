@@ -12,7 +12,6 @@ function solveEquation(a, b, c) {
     let root = -b/(2*a);
     arr.push(root);
   }
-
   return arr;
 }
 
@@ -24,8 +23,9 @@ console.log(solution);
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
 
-  if (percent === NaN || contribution === NaN || amount === NaN || countMonths === NaN) {
-    return false
+  if (isNaN(percent) || isNaN(contribution) || isNaN(amount) || isNaN(countMonths)) {
+    console.log("error")
+    return false;
   }
 
   const convertPercent = percent / 100;
@@ -34,8 +34,10 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   const monthlyPay = creditBody * (mounthPercent + (mounthPercent / (Math.pow(1 + mounthPercent, countMonths) - 1)));
   const totalAmount = monthlyPay * countMonths;
   // console.log(`Ежемесячный платеж: ${monthlyPay.toFixed(2)}`);
-  return Number(totalAmount);
+  return Number(totalAmount.toFixed(2));
 }
 
-let total = calculateTotalMortgage(10, 0, 89000, 12);
-console.log(`Всего: ${+total.toFixed(2)}`);
+let total = calculateTotalMortgage(10, 0, 50000, 12);
+// console.log(`Всего: ${+total.toFixed(2)}`);
+console.log(total)
+
