@@ -6,8 +6,8 @@ function solveEquation(a, b, c) {
   if (d > 0) {
     let rootOne = (-b + Math.sqrt(d)) / (2*a);
     let rootTwo = (-b - Math.sqrt(d)) / (2*a);
-    arr.push(rootOne.toFixed(2));
-    arr.push(rootTwo.toFixed(2));
+    arr.push(rootOne);
+    arr.push(rootTwo);
   } else if (d === 0) {
     let root = -b/(2*a);
     arr.push(root);
@@ -23,15 +23,9 @@ console.log(solution);
 
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  switch (true) {
-    case isNaN(percent):
-      return console.log("Некорректное значение percent")
-    case isNaN(contribution):
-      return console.log("Некорректное значение contribution")
-    case isNaN(amount):
-      return console.log("Некорректное значение amount")
-    case isNaN(countMonths):
-      return console.log("Некорректное значение countMonths")
+
+  if (percent === NaN || contribution === NaN || amount === NaN || countMonths === NaN) {
+    return false
   }
 
   const convertPercent = percent / 100;
@@ -40,8 +34,8 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   const monthlyPay = creditBody * (mounthPercent + (mounthPercent / (Math.pow(1 + mounthPercent, countMonths) - 1)));
   const totalAmount = monthlyPay * countMonths;
   // console.log(`Ежемесячный платеж: ${monthlyPay.toFixed(2)}`);
-  return totalAmount;
+  return Number(totalAmount);
 }
 
-let total = calculateTotalMortgage(10, 0, 50000, 12);
+let total = calculateTotalMortgage(10, 0, 89000, 12);
 console.log(`Всего: ${+total.toFixed(2)}`);
