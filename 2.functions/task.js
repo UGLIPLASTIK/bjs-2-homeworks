@@ -8,8 +8,7 @@ function getArrayParams(...arr) {
   return { min: min, max: max, avg: +avg.toFixed(2) };
 }
 
-let sol = getArrayParams(1,2,3,4,50,7,7,8,30);
-console.log(sol)
+// console.log(getArrayParams(1,2,3,4,50,7,7,8,30))
 
 function summElementsWorker(...arr) {
   if (arr.length === 0) {
@@ -19,8 +18,7 @@ function summElementsWorker(...arr) {
   return sum
 }
 
-let solSum = summElementsWorker(1,2,3,4,50,7,7,8,30);
-console.log(sum);
+// console.log(summElementsWorker(1,2,3,4,50,7,7,8,30));
 
 function differenceMaxMinWorker(...arr) {
   if (arr.length === 0) {
@@ -32,8 +30,7 @@ function differenceMaxMinWorker(...arr) {
   return difference;
 }
 
-let solDif = differenceMaxMinWorker(1,2,3,4,50,7,7,8,30);
-console.log(solDif);
+// console.log(differenceMaxMinWorker(1,2,3,4,50,7,7,8,30));
 
 function differenceEvenOddWorker(...arr) {
   if (arr.length === 0) {
@@ -50,8 +47,7 @@ function differenceEvenOddWorker(...arr) {
   }
   return sumEvenEl - sumOddEl;
 }
-let solEvenDiff = differenceEvenOddWorker(1,2,3,4,5,6,7,8,9);
-console.log(solEvenDiff);
+// console.log(differenceEvenOddWorker(1,2,3,4,5,6,7,8,9));
 
 
 function averageEvenElementsWorker(...arr) {
@@ -60,18 +56,29 @@ function averageEvenElementsWorker(...arr) {
   }
   let sumEvenElements = 0,
       countEvenElements = 0;
-      for (let i = 0; i < arr.length; i++){
-        if ((arr[i] % 2) === 0) {
-          sumEvenElements += arr[i];
-          countEvenElements++;
-        }
-      }
+  for (let i = 0; i < arr.length; i++){
+    if ((arr[i] % 2) === 0) {
+      sumEvenElements += arr[i];
+      countEvenElements++;
+    }
+  }
   return sumEvenElements / countEvenElements;
 }
 
-let solAverEven = averageEvenElementsWorker(1,2,3,4,5,6,7,8,9);
-console.log(solAverEven);
+// console.log(averageEvenElementsWorker(1,2,3,4,5,6,7,8,9));
 
-function makeWork (arrOfArr, func) {
 
+const arr = [[10, 10, 11, 20, 10], [67, 10, 2, 39, 88], [72, 75, 51, 87, 43], [30, 41, 55, 96, 62]];
+
+function makeWork(arrOfArr, func) {
+  let maxWorkerResult = -Infinity;
+  for (let i = 0; i < arrOfArr.length; i++) {    
+    if (maxWorkerResult < func(arrOfArr[i])) {
+      maxWorkerResult = func(arrOfArr[i]);
+    }
+  }
+  return maxWorkerResult
 }
+
+let solWork = makeWork(arr, getArrayParams);
+console.log(solWork);
