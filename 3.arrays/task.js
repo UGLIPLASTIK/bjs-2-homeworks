@@ -6,7 +6,7 @@ function compareArrays(arr1, arr2) {
     result = false;
   }
   return result
-  }
+}
 
 function getUsersNamesInAgeRange(users, gender) {
   if(users.filter(users => users.gender === gender).length === 0 || (gender != 'мужской' && gender != 'женский')){
