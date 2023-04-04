@@ -75,11 +75,24 @@ class Library{
   }
 
   findBookBy(type, value){
-    let searchBook = this.type
-    this.find(searchBook)
+    for(let book = 0; book < this.books.length; book++){
+      if(this.books[book][type] === value){
+        return this.books[book]
+      } 
+    }
+  }
+
+  giveBookByName(bookName){
+    for (let book = 0; book < this.books.length; book++) {
+      if(this.books[book].name === bookName) {
+        let searchBook = this.books[book];
+        let ind = this.books.indexOf(searchBook);
+        this.books.splice(ind, 1);
+        return searchBook;
+      }
+    }
   }
 }
-
 
 const library = new Library('central library');
 
@@ -90,6 +103,56 @@ const picknick = new FantasticBook(
   168
 );
 
-library.addBook(picknick);
-console.log(library);
-console.log(library.find(book => book.releaseDate === 1972))
+library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
+library.addBook(new Magazine("Мурзилка", 1924, 60));
+library.addBook(new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168));
+
+// console.log(library.giveBookByName('Машина времени'));
+// console.log(library.giveBookByName('Мурзилка'));
+// console.log(library);
+// console.log(library.findBookBy('author', 'Аркадий и Борис Стругацкие'));
+
+class Student{
+  constructor(name) {
+    this.name = name,
+    this.marks = {}
+  }
+  
+  setSubject(subjectName) {
+    this.marks[subjectName] = [];
+  }
+
+  addMark(mark, subjectName) {
+    if(mark < 2 || mark > 5) {
+      return
+    } else if(!(subjectName in this.marks)) {
+      this.marks[subjectName] = [];
+      this.marks[subjectName].push(mark);
+    }
+    else {
+      this.marks[subjectName].push(mark);
+    }
+  }
+
+  getAverageBySubject(subjectName) {
+    return (!(subjectName in this.marks)) ? 0 : Number(((this.marks[subjectName].reduce((a, i) => a + i, 0)) / this.marks[subjectName].length).toFixed(1));
+  }
+
+  getAverage(){
+    let sum = 0
+    for(let i = 0; i < Object.values(this.marks).length; i++){
+      sum += (Object.values(this.marks)[i].reduce((a, m) => a + m, 0)) / Object.values(this.marks)[i].length;
+    }
+    return Number((sum / Object.keys(this.marks).length).toFixed(1))
+  }
+}
+// let student1 = new Student('Ivan');
+// student1.setSubject('math')
+// student1.addMark(5, 'math')
+// student1.addMark(4, 'eng')
+// student1.addMark(5, 'math')
+// student1.addMark(4, 'eng')
+// student1.addMark(5, 'chem')
+// student1.addMark(5, 'chem')
+// console.log(student1.getAverage())
+// console.log(student1.marks)
