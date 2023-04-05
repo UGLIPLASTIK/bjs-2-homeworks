@@ -80,6 +80,7 @@ class Library{
         return this.books[book]
       } 
     }
+    return null
   }
 
   giveBookByName(bookName){
@@ -91,6 +92,7 @@ class Library{
         return searchBook;
       }
     }
+    return null
   }
 }
 
@@ -108,7 +110,7 @@ library.addBook(new Magazine("Мурзилка", 1924, 60));
 library.addBook(new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168));
 
 // console.log(library.giveBookByName('Машина времени'));
-// console.log(library.giveBookByName('Мурзилка'));
+console.log(library.giveBookByName('Мурзилка'));
 // console.log(library);
 // console.log(library.findBookBy('author', 'Аркадий и Борис Стругацкие'));
 
