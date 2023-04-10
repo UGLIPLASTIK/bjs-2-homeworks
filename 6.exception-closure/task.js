@@ -26,18 +26,15 @@ class Triangle{
   }
 
   get perimeter(){
-    return this.side1 + this.side2 + this.side3;
+    return Number(this.side1 + this.side2 + this.side3);
   }
 
   get area(){
     const pp = 1/2 * (this.side1 + this.side2 + this.side3);
-    return Math.sqrt(pp * (pp - this.side1)*(pp - this.side2)*(pp - this.side3)).toFixed(3)
-    // return (1/4 * Math.sqrt((this.side1 + this.side2 - this.side3) * (this.side1 - this.side2 + this.side3) * (- this.side1 + this.side2 + this.side3) * (this.side1 + this.side2 + this.side3))).toFixed(3)
+    return Number(Math.sqrt(pp * (pp - this.side1)*(pp - this.side2)*(pp - this.side3)).toFixed(3))
   }
 }
 
-let triangle = new Triangle(6,10,15);
-console.log(triangle.perimeter)
 
 function getTriangle(a,b,c){
   if(a + b < c || b + c < a || a + c < b){
@@ -48,5 +45,5 @@ function getTriangle(a,b,c){
   this.c = c
 }
 
-let newTriangle = new getTriangle(6,10,15);
+let newTriangle = new getTriangle(6,5,15);
 console.log(newTriangle);
