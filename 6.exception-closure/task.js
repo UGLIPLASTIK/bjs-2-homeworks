@@ -38,12 +38,8 @@ class Triangle{
 
 function getTriangle(side1,side2,side3){
   try{
-    if(side1 + side2 < side3 || side2 + side3 < side1 || side1 + side3 < side2){
-      throw error
-    }
     return new Triangle(side1,side2,side3)
-
-  } catch(error){
+  }catch(error){
     let triangle = {
       get perimeter(){
         return "Ошибка! Треугольник не существует"
@@ -52,9 +48,10 @@ function getTriangle(side1,side2,side3){
         return "Ошибка! Треугольник не существует"
       }
     }
+    // console.log(error.message)
     return triangle
   }
 }
 
-let triangle = getTriangle(6,10,15);
-console.log(triangle);
+// let triangle = getTriangle(6,5,15);
+// console.log(triangle);
