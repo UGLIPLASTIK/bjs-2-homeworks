@@ -48,10 +48,6 @@ function getTriangle(side1,side2,side3){
         return "Ошибка! Треугольник не существует"
       }
     }
-    // console.log(error.message)
     return triangle
   }
 }
-
-// let triangle = getTriangle(6,5,15);
-// console.log(triangle);
