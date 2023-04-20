@@ -11,7 +11,6 @@ class AlarmClock{
     for(let item of this.alarmCollection){
       if(time === item.time){
         console.warn('Уже присутствует звонок на это же время');
-        return;
       }
     }
     const obj = {
@@ -61,16 +60,6 @@ class AlarmClock{
     this.alarmCollection = [];
   }
 }
-
-// let alarms = new AlarmClock();
-
-
-// alarms.addClock('12:00', 'func');
-// alarms.addClock('13:00', 'func');
-// alarms.addClock('14:00', 'func');
-// alarms.clearAlarms()
-
-// console.log(alarms.alarmCollection.length)
 
 
 
