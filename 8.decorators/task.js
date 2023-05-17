@@ -1,31 +1,42 @@
 //Задача № 1
 function cachingDecoratorNew(func) {
-  
+  let cache = [];
+  return (...args) => {
+    const hash = md5(args);
+    let objectInCache = cache.find((item) => item.hash === hash);
+    if (objectInCache) {
+        console.log("Из кеша: " + objectInCache.value);
+        return "Из кеша: " + objectInCache.value;
+    }
+
+    let result = func(...args);
+    cache.push({hash, value: result});
+    if (cache.length > 5) { 
+      cache.shift();
+    }
+    console.log("Вычисляем: " + result);
+    return "Вычисляем: " + result;  
+  }
 }
 
 //Задача № 2
 
 function debounceDecorator(func, delay){
-  let timeOutId = null;
+  let timeoutId = null;
   wrapper.count = 0;
   wrapper.allCount = 0;
-  function wrapper(...args){
-    if(wrapper.count === 0){
-    wrapper.count += 1;
-    return func(...args);
-    }
-    wrapper.allCount += 1;
-    console.log('удалили текущий таймаут')
-    clearTimeout(timeOutId);
-    console.log('создаем таймаут');
-    timeOutId = setTimeout(() => {
-    timeOutId = null;
-    console.log(func(...args));
-    console.log('вызвали колбек');
-    console.log(wrapper.allCount)
-    wrapper.count += 1;
+  function wrapper(...args) {
+    wrapper.allCount++;
+    if(timeoutId === null){
+        wrapper.count++;
+        func(...args);
+    }  
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+    wrapper.count++;
+    func(...args);
     }, delay);
-  }
+}
   return wrapper;
 }
 
